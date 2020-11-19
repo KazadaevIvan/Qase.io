@@ -1,6 +1,7 @@
 package adapters;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.restassured.response.Response;
 import utils.PropertyReader;
 
@@ -12,7 +13,7 @@ public class BaseAdapter {
             .getOrDefault("token", PropertyReader.getProperty("token"));
     public static final String url = System.getenv()
             .getOrDefault("url", PropertyReader.getProperty("url"));
-    Gson converter = new Gson();
+    Gson converter = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
     /**
      *
