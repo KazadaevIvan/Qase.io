@@ -1,7 +1,9 @@
 package adapters;
 
 import models.TestSuite;
-import models.TestSuitesList;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class SuiteAdapter extends BaseAdapter {
     public static final String URI = "v1/suite";
@@ -21,10 +23,13 @@ public class SuiteAdapter extends BaseAdapter {
     }
 
     public TestSuite getSpecificTestSuite(String projectCode, int id) {
-        return converter.fromJson(get(String.format("%s/%s/%s", URI, projectCode, id)), TestSuite.class);
+        String body = converter.toJson(get(String.format("%s/%s/%s", URI, projectCode, id))
+                .body().path("result"), LinkedHashMap.class);
+        return converter.fromJson(body, TestSuite.class);
     }
 
-    public TestSuitesList getAllTestSuites(String projectCode) {
-        return converter.fromJson(get(String.format("%s/%s", URI, projectCode)), TestSuitesList.class);
+    public ArrayList<TestSuite> getAllTestSuites(String projectCode) {
+        return get(String.format("%s/%s", URI, projectCode))
+                .body().path("result.entities");
     }
 }
