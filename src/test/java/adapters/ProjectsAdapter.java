@@ -1,7 +1,9 @@
 package adapters;
 
 import models.Project;
-import models.ProjectsList;
+
+import java.util.LinkedHashMap;
+import java.util.List;
 
 public class ProjectsAdapter extends BaseAdapter {
     public static final String URI = "v1/project";
@@ -12,10 +14,12 @@ public class ProjectsAdapter extends BaseAdapter {
     }
 
     public Project getSpecificProject(String projectCode) {
-        return converter.fromJson(get(String.format("%s/%s", URI, projectCode)), Project.class);
+        String body = converter.toJson(get(String.format("%s/%s", URI, projectCode))
+                .body().path("result"), LinkedHashMap.class);
+        return converter.fromJson(body, Project.class);
     }
 
-    public ProjectsList getAllProjects() {
-        return converter.fromJson(get(URI), ProjectsList.class);
+    public List<Project> getAllProjects() {
+        return get(URI).body().path("result.entities");
     }
 }
