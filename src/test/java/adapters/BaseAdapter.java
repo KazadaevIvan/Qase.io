@@ -18,10 +18,10 @@ public class BaseAdapter {
     /**
      *
      * @param uri e.g. v1/project (will be concatenated with URL
-     * @return body
+     * @return whole body of the response
      */
 
-    public String get(String uri) {
+    public Response get(String uri) {
         return
                 given()
                         .header("Token", token)
@@ -30,7 +30,7 @@ public class BaseAdapter {
                         .get(url + uri)
                 .then()
                         .log().all()
-                        .extract().body().asString();
+                        .extract().response();
     }
 
     /**
@@ -62,12 +62,6 @@ public class BaseAdapter {
                 .log().all();
     }
 
-    /**
-     *
-     * @param uri e.g. v1/project (will be concatenated with URL
-     * @param body request body
-     * @return whole body of the response. Usually contains status and ID of the object
-     */
     public Response patch(String uri, String body) {
         return
                 given()
