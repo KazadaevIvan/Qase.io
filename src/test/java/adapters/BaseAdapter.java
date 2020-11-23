@@ -6,6 +6,7 @@ import io.restassured.response.Response;
 import utils.PropertyReader;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
 public class BaseAdapter {
 
@@ -30,15 +31,17 @@ public class BaseAdapter {
                         .get(url + uri)
                 .then()
                         .log().all()
+                        .assertThat().body("status", equalTo(true))
                         .extract().response();
     }
 
     /**
      *
-     * @param uri e.g. v1/project (will be concatenated with URL
+     * @param uri e.g. v1/project (will be concatenated with URL)
      * @param body request body
      * @return whole body of the response. Usually contains status and ID of the object
      */
+
     public Response post(String uri, String body) {
         return
                 given()
@@ -49,8 +52,14 @@ public class BaseAdapter {
                         .post(url + uri)
                 .then()
                         .log().all()
+                        .assertThat().body("status", equalTo(true))
                         .extract().response();
     }
+
+    /**
+     *
+     * @param uri e.g. v1/project (will be concatenated with URL)
+     */
 
     public void delete(String uri) {
         given()
@@ -59,8 +68,16 @@ public class BaseAdapter {
         .when()
                 .delete(url + uri)
         .then()
-                .log().all();
+                .log().all()
+                .assertThat().body("status", equalTo(true));
     }
+
+    /**
+     *
+     * @param uri e.g. v1/project (will be concatenated with URL)
+     * @param body request body
+     * @return whole body of the response. Usually contains status and ID of the object
+     */
 
     public Response patch(String uri, String body) {
         return
@@ -72,6 +89,7 @@ public class BaseAdapter {
                         .patch(url + uri)
                 .then()
                         .log().all()
+                        .assertThat().body("status", equalTo(true))
                         .extract().response();
     }
 }
