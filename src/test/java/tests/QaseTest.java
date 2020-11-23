@@ -18,7 +18,7 @@ public class QaseTest {
         Project project = Project.builder()
                 .title("Ivan Kazadaev TEST")
                 .access("all")
-                .code("IKTEST")
+                .code(Project.generateCode(4))
                 .group(null)
                 .description("Ivan's project")
                 .build();
@@ -35,7 +35,7 @@ public class QaseTest {
         Project project = Project.builder()
                 .title("Ivan Kazadaev")
                 .access("all")
-                .code("IK")
+                .code(Project.generateCode(4))
                 .group(null)
                 .description("Ivan's project")
                 .build();
@@ -50,7 +50,7 @@ public class QaseTest {
         Project project = Project.builder()
                 .title("Ivan Kazadaev")
                 .access("all")
-                .code("IK")
+                .code(Project.generateCode(4))
                 .group(null)
                 .description("Ivan's project")
                 .build();
@@ -62,7 +62,7 @@ public class QaseTest {
         Project project = Project.builder()
                 .title("Ivan Kazadaev")
                 .access("all")
-                .code("IK")
+                .code(Project.generateCode(4))
                 .group(null)
                 .description("Ivan's project")
                 .build();
@@ -80,7 +80,7 @@ public class QaseTest {
         Project project = Project.builder()
                 .title("Ivan Kazadaev")
                 .access("all")
-                .code("IK")
+                .code(Project.generateCode(4))
                 .group(null)
                 .description("Ivan's project")
                 .build();
@@ -104,7 +104,7 @@ public class QaseTest {
         Project project = Project.builder()
                 .title("Ivan Kazadaev")
                 .access("all")
-                .code("IK")
+                .code(Project.generateCode(4))
                 .group(null)
                 .description("Ivan's project")
                 .build();
@@ -124,7 +124,7 @@ public class QaseTest {
         Project project = Project.builder()
                 .title("Ivan Kazadaev")
                 .access("all")
-                .code("IK")
+                .code(Project.generateCode(4))
                 .group(null)
                 .description("Ivan's project")
                 .build();
@@ -143,7 +143,7 @@ public class QaseTest {
         Project project = Project.builder()
                 .title("Ivan Kazadaev Second Project")
                 .access("all")
-                .code("IK")
+                .code(Project.generateCode(4))
                 .group(null)
                 .description("Ivan's project")
                 .build();
